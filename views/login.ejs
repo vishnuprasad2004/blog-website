@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2 | Blog Website</title>
+    <%- include('./main-style') %>
+    <style>
+        body {
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        #form-container {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="/register" method="post" class="form">
+        <div id="form-container">
+            <form id="form" method="post">
+                <table>
+                    <tr>
+                        <td colspan="2">
+                            <h1>Login</h1>
+                            <hr>
+                            <span id="error"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="email">Email</label></td>
+                        <td><input type="email" name="email" id="email" placeholder="tonystark@gmail.com" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="password">Password</label></td>
+                        <td><input type="password" name="password" id="password" required><i class="far fa-eye"
+                                id="togglePassword"></i></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center"><br><button type="submit" id="submit">Login</button></td>
+                    </tr>
+                </table>
+            </form>
+            <p><a href="/register"><span style="color:rgb(0, 51, 255);">Don't have an Account, then Register</span></a></p>
+        </div>
+    </form>
+</body>
+
+</html>

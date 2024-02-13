@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2 | Blog Website</title>
+    <%- include('./main-style') %>
+    <style>
+        body {
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="block">
+        <form action="/register" method="post" class="form">
+            <div id="form-container">
+                <form id="form" method="post">
+                    <table>
+                        <tr>
+                            <td colspan="2">
+                                <h1>Register Now</h1>
+                                <hr>
+                                <span id="error"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="name">Name<span style="color:red;">*</span></label></td>
+                            <td><input type="text" name="name" id="name" placeholder="Tony Stark" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for="gender">Gender</label></td>
+                            <td>
+                                <input type="radio" name="gender" id="male" value="male">Male &nbsp;
+                                <input type="radio" name="gender" id="male" value="female">Female &nbsp;
+                                <input type="radio" name="gender" id="male" value="other">Others &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="email">Email<span style="color:red;">*</span></label></td>
+                            <td><input type="email" name="email" id="email" placeholder="tonystark@gmail.com" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="password">Password<span style="color:red;">*</span></label></td>
+                            <td><input type="password" name="password" id="password" required><i class="far fa-eye"
+                                    id="togglePassword"></i></td>
+                        </tr>
+                        <!-- <tr>
+                            <td><label for="confirmPassword">Confirm Password<span style="color:red;">*</span></label>
+                            </td>
+                            <td><input type="password" name="confirmPassword" id="confirmPassword" required></td>
+                        </tr> -->
+                        <tr>
+                            <td colspan="2" align="center"><br><button type="submit" id="submit">Sign up</button></td>
+                        </tr>
+                    </table>
+                </form>
+                <p style="font-weight: 600;color:#898989;font-size: small;">By creating an account you agree to our <a
+                        href="#">Terms & Privacy</a>.</p>
+                <p><a href="/login"><span style="color:rgb(0, 51, 255);">Aready have an Account, then Login</span></a></p>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Poppins');
+
+    :root {
+        --primary: teal;
+        --primary-dark: rgb(12, 88, 88);
+        --bg1: #121212;
+        --bg2: #232323;
+        --bg3: #343434;
+        --bg4: #454545;
+        --bg5: #676767;
+        --fg1: #eeeeff;
+        --fg2: #ccccdd;
+    }
+
+    body {
+        height: 100vh;
+        width: 100vw;
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--bg1);
+        color: var(--fg1);
+        user-select: none;
+        overflow-x: hidden;
+        margin: 0;
+    }
+
+    button {
+        background-color: var(--primary);
+        font-size: medium;
+        color: white;
+        border-radius: 1rem;
+        padding: 0.75rem;
+        border: 2px solid transparent;
+        margin: auto;
+        transition: 400ms;
+        width: 100%;
+    }
+
+    button:hover {
+        transition: 400ms;
+        border: 2px solid var(--primary);
+        background-color: transparent;
+        color: var(--color);
+
+    }
+
+    a {
+        text-decoration: none;
+        color: var(--color);
+    }
+
+    input[type=text] {
+        width: 100%;
+        padding: 5px;
+        border-radius: 0.25rem;
+        font-size: 15px;
+    }
+
+    input[type=email] {
+        padding: 5px;
+        width: 100%;
+        border-radius: 0.25rem;
+        font-size: 15px;
+    }
+
+    input[type=password] {
+        padding: 5px;
+        width: 100%;
+        border-radius: 0.25rem;
+        font-size: 15px;
+        position: relative;
+    }
+
+    textarea {
+        padding: 5px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 13px;
+        resize: none;
+        width: 100%;
+        font-size: 15px;
+        border-radius: 0.25rem;
+    }
+
+    footer {
+        position: absolute;
+        bottom: 0;
+        font-weight: 500;
+        color: #343434;
+    }
+
+    #form-container {
+        position: relative;
+        width: max-content;
+        animation: animate 1000ms ease-in;
+        background-color: var(--bg2);
+        border: 2px solid #343434;
+        box-shadow: inset 0 0 20px #12121255, 0 0 20px #00000055;
+        border-radius: 10px;
+        padding: 2rem;
+        margin: auto;
+        text-align: left;
+        text-wrap: wrap;
+    }
+</style>
