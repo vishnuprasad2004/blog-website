@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it@10.0.0/dist/markdown-it.min.js"></script>
+    <title>
+        <%= blog.title %>
+    </title>
+    <%- include('main-style.ejs') %>
+        <style>
+            h2 {
+                margin-left: 100px;
+                margin-right: 100px;
+                text-align: center;
+                font-size: 80px;
+            }
+
+            #output {
+                padding: 100px;
+                text-align: justify;
+                background-color: var(--bg2);
+            }
+        </style>
+</head>
+
+<body>
+    <%- include('navbar.ejs') %>
+    <h2>
+        <%= blog.title %>
+    </h2>
+    <div style="text-align: center;font-size: 20px;">Written by: <%= blog.author %></div>
+    <div id="output">
+        <%= blog.content %>
+    </div>
+    <!-- <div id="output"></div> -->
+
+    
+    <script>
+        const input = document.getElementById("text");
+        const output = document.getElementById("output");
+        output.innerHTML = input.value;
+
+    </script>
+</body>
+
+</html>

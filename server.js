@@ -5,6 +5,8 @@ const app = express()
 const PORT = 3000
 
 app.set("view-engine", "ejs")
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 app.use("/", router)
 
 // This route will handle all the requests that are  

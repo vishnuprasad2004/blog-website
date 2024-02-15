@@ -1,14 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task 2 | Blog Website</title>
+    <title>Blog Website</title>
     <%- include('./main-style') %>
+    <style>
+        header nav {
+            background-color: #010409;
+            width: 100%;
+            /* position: absolute;
+        top:0; */
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+        }
+        .flex {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .profile-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--bg3);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-position: center;
+            background-size: contain;
+        }
+
+        button {
+            width: fit-content;
+        }
+        main {
+            padding: 2ch;
+        }
+
+        #dashboard {
+            padding: 2ch;
+            border-radius: 1rem;
+            background-color: var(--bg2);
+        }
+
+        .blogs {
+            padding: 2ch;
+            display: flex;
+            gap: 2ch;
+            justify-content: space-evenly;
+        }
+
+        .blog {
+            background-color: var(--bg2);
+            padding: 2ch;
+            width: max-content;
+            text-wrap: wrap;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+
+        .details {
+            margin: 0;
+        }
+        .author-text {
+            font-size: 15px;
+            font-weight: 800;
+            color: gray;
+        }
+
+        .hero-img {
+            border-radius: 1rem;
+            height:90vh;
+            position: absolute;
+            top:0;
+            z-index: -2;
+            left:0;
+        }
+    </style>
 </head>
+
 <body>
     <header>
-        <nav></nav>
+        <nav>
+            <a href="/">
+                <i class="fa-brands fa-square-pied-piper" style="font-size: 20px;"></i>&nbsp;Blogzz</a>
+            <a href="http://github.com/vishnuprasad2004/blog-website">
+                <p>Github</p>
+            </a>
+            <% if (loggedIn) { %>
+                <div style="display: flex;justify-content: space-evenly;align-items:center;gap: 2rem;">
+                    <a href="/logout"><span>Logout</span></a>
+                    <a href="/new"><button>New</button></a>
+                    <img class="profile-image" src="<%= encodeURI(user.profileImage) %>"></img>
+                </div>
+                <% } else { %>
+                    <a href="/login"><span>Login</span></a>
+                    <% } %>
+
+        </nav>
     </header>
+
+    <% if(loggedIn) { %>
+
+        <main>
+            <div id="dashboard">
+                <h2># Dashboard</h2>
+                <div class="flex">
+                    <div>
+                        <p class="details">Name: <%= user.name %></p>
+                        <p class="details">Email: <%= user.email %></p>
+                        <p class="details">Total blogs: <%= myBlogs.length %></p>
+                    </div>
+                    <a href="/new"><button>New</button></a>
+                </div>
+
+            </div>
+            <div class="blogs">
+                <% for( let i=0; i < myBlogs.length; i++ ) { %>
+                    <a href="<%= encodeURI("/blog/" + myBlogs[i].slug) %>" class="blog">
+                        <h2 style="margin-bottom: 0;">
+                            <%= myBlogs[i].title %>
+                        </h2>
+                        <span class="author-text">By: <%= myBlogs[i].author %></span>
+                        <p>
+                            <%= myBlogs[i].content %>
+                        </p>
+                    </a>
+                    <% } %>
+    
+            </div>
+        </main>
+
+    <% } else { %>
+
+        <main>
+            <div class="flex">
+                <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29kaW5nfGVufDB8fDB8fHww" alt="img" class="hero-img" draggable="false">
+                <div>
+                    <h1>Hello World!!!</h1>
+                    <h2>Welcome to Blogzz</h2>
+                    <p>Some welcome message.....bla...bla...bla...</p>
+                </div>
+            </div>
+        </main>
+    
+    <% } %>
 </body>
+
 </html>

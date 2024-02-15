@@ -13,20 +13,31 @@
             justify-content: center;
             align-items: center;
         }
+        #preview-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--bg3);
+            width: 100px;
+            height:100px;
+            border-radius: 50%;
+            background-position: center;
+            background-size: contain;
+            background-image: url("");
+        }
     </style>
 </head>
 
 <body>
     <div id="block">
         <form action="/register" method="post" class="form">
-            <div id="form-container">
-                <form id="form" method="post">
+            <div class="form-container">
+                <!-- <form id="form" method="post"> -->
                     <table>
                         <tr>
                             <td colspan="2">
                                 <h1>Register Now</h1>
                                 <hr>
-                                <span id="error"></span>
                             </td>
                         </tr>
                         <tr>
@@ -48,25 +59,41 @@
                         </tr>
                         <tr>
                             <td><label for="password">Password<span style="color:red;">*</span></label></td>
-                            <td><input type="password" name="password" id="password" required><i class="far fa-eye"
-                                    id="togglePassword"></i></td>
+                            <td><input type="password" name="password" id="password" required></td>
                         </tr>
-                        <!-- <tr>
-                            <td><label for="confirmPassword">Confirm Password<span style="color:red;">*</span></label>
+                        <tr>
+                            <td><label for="profileImage">Profile Image<span style="color:red;">*</span></label></td>
+                            <td>
+                                <input type="text" name="profileImage" id="profile-image" required placeholder="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29kaW5nfGVufDB8fDB8fHww">
+                                <span style="font-size: 12px; font-weight: 500;color:#898989;margin:0;padding: 0;">Fill with a Unsplash Image URL</span>
                             </td>
-                            <td><input type="password" name="confirmPassword" id="confirmPassword" required></td>
-                        </tr> -->
+                        </tr>
+                        <tr>
+                            <td><div id="preview-image"><span>Preview</span></div></td>
+                        </tr>
                         <tr>
                             <td colspan="2" align="center"><br><button type="submit" id="submit">Sign up</button></td>
                         </tr>
                     </table>
-                </form>
+                    
+                <!-- </form> -->
                 <p style="font-weight: 600;color:#898989;font-size: small;">By creating an account you agree to our <a
                         href="#">Terms & Privacy</a>.</p>
                 <p><a href="/login"><span style="color:rgb(0, 51, 255);">Aready have an Account, then Login</span></a></p>
             </div>
         </form>
     </div>
+    <script>
+        document.getElementById("profile-image").addEventListener("keyup",() => {
+            let previewImage = document.getElementById("preview-image")
+            if(previewImage.style.backgroundImage != 'url("")') {
+                previewImage.style.color = "transparent" 
+            }else {
+                previewImage.style.color = "#eeeeff" 
+            }
+            previewImage.style.backgroundImage = `url(${document.getElementById("profile-image").value})`
+        })
+    </script>
 </body>
 
 </html>

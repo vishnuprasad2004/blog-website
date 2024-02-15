@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Blog</title>
+    <%- include('./main-style') %>
+    <style>
+        body {
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        input[type=text] {
+            font-size: 30px;
+            font-weight: bold;
+            background-color: transparent;
+        }
+
+        textarea {
+            background-color: transparent;
+            /* box-shadow: inset 0 0 10px #34343466; */
+        }
+    </style>
+</head>
+<body>
+    <form action="/new" method="post" id="form" class="form">
+        <div class="form-container">
+            
+            <table>
+                <tr>
+                    <td colspan="2"><h1>Create a new Blog</h1></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="text" name="title" id="title" placeholder="Add your Title here..." required></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <textarea name="content" id="" cols="150" rows="10" placeholder="Write your content here..." required></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td><button type="submit">Create Blog</button></td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+</html>
