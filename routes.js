@@ -1,5 +1,7 @@
 import { Router } from "express"
-import MarkdownIt from "markdown-it"
+import jwt from "jsonwebtoken"
+import User from "./models/userModel.js"
+
 const router = Router()
 
 const users = [
@@ -18,7 +20,7 @@ const blogs = [
         slug: "introduction-to-machine-learning",
         title: "Introduction to Machine Learning",
         author: "Vishnu Prasad Korada",
-        authorId:"1vishnuuu",
+        authorId: "1vishnuuu",
         content: `* Machine learning * (ML) is a field of study in artificial intelligence concerned with the development and study of
         statistical algorithms that can learn from data and generalize to unseen data, and thus perform tasks without
         explicit instructions.[1] Recently, generative artificial neural networks have been able to surpass many
@@ -79,7 +81,7 @@ const blogs = [
         slug: "operating-system",
         title: "Operating System",
         author: "Vishnu Prasad Korada",
-        authorId:"1vishnuuu",
+        authorId: "1vishnuuu",
         content: `An operating system (OS) is system software that manages computer hardware and software resources, and provides common services for computer programs.
         Time-sharing operating systems schedule tasks for efficient use of the system and may also include accounting software for cost allocation of processor time, mass storage, peripherals, and other resources.
         For hardware functions such as input and output and memory allocation, the operating system acts as an intermediary between programs and the computer hardware,[1][2] although the application code is usually executed directly by the hardware and frequently makes system calls to an OS function or is interrupted by it. Operating systems are found on many devices that contain a computer – from cellular phones and video game consoles to web servers and supercomputers.
@@ -108,30 +110,91 @@ const blogs = [
 ]
 
 router.route("/").get((req, res) => {
+    // const authHeader = req.headers['authorization']
+    // const token = authHeader && authHeader.split(' ')[1]
+
+    let token = req.cookies.token
+    console.log(token);
+    // jwt.verify(token)
+    console.log(jwt.decode(token))
+
+    console.log(token);
     res.render("index.ejs", { loggedIn: true, user: users[0], myBlogs: blogs })
 })
 
+
+
+
+
 router.route("/register").get((req, res) => {
-    res.render("register.ejs")
+    res.render("register.ejs", { message: null })
 })
 
-router.route("/register").post((req, res) => {
-    console.log(req.body)
+router.route("/register").post(async (req, res) => {
+    try {
+
+        console.log("[registration] ", req.body)
+        let { name, gender, email, password, profileImage } = req.body
+
+        if ([name, email, password].some(element => element.trim() === "")) {
+            res.render("register.ejs", { message: "Some error occured during registering the user." })
+        }
+
+        const existedUser = await User.findOne({ email })
+        if (existedUser) {
+            res.render("register.ejs", { message: "User already registered" })
+        }
+
+        if (profileImage.trim() === "") {
+            profileImage = "https://images.unsplash.com/photo-1595411425732-e69c1abe2763?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8c2hhcGVzfGVufDB8fDB8fHww"
+        }
+
+        const newUser = await User.create({ name, email, password, gender, profileImage })
+        console.log(newUser);
+
+        let token = jwt.sign({ userDetails: newUser }, process.env.ACCESS_SECRET, { expiresIn: "1d" })
+        res.cookie("token", token, { httpOnly: true })
+        res.redirect("/")
+
+    } catch (e) {
+        console.log(e);
+        res.render("register.ejs", { message: "Some error occured during registering the user." })
+    }
 })
+
+
+
 
 router.route("/login").get((req, res) => {
-    res.render("login.ejs")
-})
-router.route("/login").post((req, res) => {
-    console.log(req.body)
-})
-router.route("/new").get((req,res) => {
-    res.render("newBlog.ejs")
+    res.render("login.ejs", { message: null })
 })
 
-router.route("/new").post((req,res) => { 
-    console.log(req.body)
-    res.redirect("/")
+router.route("/login").post(async (req, res) => {
+    try {
+
+        console.log(req.body)
+
+    } catch (e) {
+        console.log(e);
+    }
+})
+
+router.route("/new").get((req, res) => {
+    res.render("newBlog.ejs", { message: null })
+})
+
+router.route("/new").post(async (req, res) => {
+    try {
+
+        console.log(req.body);
+        const { title, content } = req.body
+
+        res.redirect("/")
+
+    } catch (e) {
+        console.log(e);
+        res.render("newBlog.ejs", { message: "Some error occured during creating the blog." })
+    }
 })
 
 router.route("/profile/:id").get((req, res) => {

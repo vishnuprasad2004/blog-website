@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task 2 | Blog Website</title>
+    <title>Register Please</title>
     <%- include('./main-style') %>
     <style>
         body {
@@ -30,6 +30,7 @@
 
 <body>
     <div id="block">
+        <%= message %>
         <form action="/register" method="post" class="form">
             <div class="form-container">
                 <!-- <form id="form" method="post"> -->
@@ -47,9 +48,9 @@
                         <tr>
                             <td><label for="gender">Gender</label></td>
                             <td>
-                                <input type="radio" name="gender" id="male" value="male">Male &nbsp;
-                                <input type="radio" name="gender" id="male" value="female">Female &nbsp;
-                                <input type="radio" name="gender" id="male" value="other">Others &nbsp;
+                                <input type="radio" name="gender" id="male" value="male" required>Male &nbsp;
+                                <input type="radio" name="gender" id="male" value="female" required>Female &nbsp;
+                                <input type="radio" name="gender" id="male" value="other" required>Others &nbsp;
                             </td>
                         </tr>
                         <tr>
@@ -62,9 +63,9 @@
                             <td><input type="password" name="password" id="password" required></td>
                         </tr>
                         <tr>
-                            <td><label for="profileImage">Profile Image<span style="color:red;">*</span></label></td>
+                            <td><label for="profileImage">Profile Image</label></td>
                             <td>
-                                <input type="text" name="profileImage" id="profile-image" required placeholder="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29kaW5nfGVufDB8fDB8fHww">
+                                <input type="text" name="profileImage" id="profile-image" placeholder="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29kaW5nfGVufDB8fDB8fHww">
                                 <span style="font-size: 12px; font-weight: 500;color:#898989;margin:0;padding: 0;">Fill with a Unsplash Image URL</span>
                             </td>
                         </tr>

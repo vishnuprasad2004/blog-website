@@ -1,8 +1,32 @@
 import mongoose from "mongoose";
 
-const postSchema = new mongoose.Schema({
+const PostSchema = new mongoose.Schema({
+    title:{
+        type:String,
+        required:true,
+        trim:true,
+    },
+    slug: {
+        type:String,
+        required:true,
+        trim:true,
+        lowercase:true,
+    },
+    author: {
+        type: String,
+        required:true,
+        trim:true,
+    },
+    authorId: {
+        type: mongoose.Types.ObjectId,
+        required:true
+    },
+    content: {
+        type: String,
+        required:true
+    }
+},{
+    timestamps:true
 })
 
-postSchema.pre("save",function() {
-    
-})
+export default mongoose.model("posts",PostSchema)
