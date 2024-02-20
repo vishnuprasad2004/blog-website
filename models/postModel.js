@@ -11,6 +11,7 @@ const PostSchema = new mongoose.Schema({
         required:true,
         trim:true,
         lowercase:true,
+        unique:true
     },
     author: {
         type: String,
@@ -29,4 +30,5 @@ const PostSchema = new mongoose.Schema({
     timestamps:true
 })
 
-export default mongoose.model("posts",PostSchema)
+const Post = mongoose.model("posts",PostSchema)
+export default Post

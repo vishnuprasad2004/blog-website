@@ -95,7 +95,7 @@
             </a>
             <% if (loggedIn) { %>
                 <div style="display: flex;justify-content: space-evenly;align-items:center;gap: 2rem;">
-                    <a href="/logout"><span>Logout</span></a>
+                    <form action="/logout" method="post"><input type="submit" value="Logout"></form>
                     <a href="/new"><button>New</button></a>
                     <img class="profile-image" src="<%= encodeURI(user.profileImage) %>"></img>
                 </div>
